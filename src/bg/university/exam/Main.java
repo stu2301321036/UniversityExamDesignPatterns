@@ -15,6 +15,7 @@ public class Main {
         University university = University.getInstance();
         University anotherUniversity = University.getInstance();
 
+    //--------
         Student firstStudent = new Student(
                 "Иван",
                 StudentType.WUNDERKIND,
@@ -28,7 +29,7 @@ public class Main {
         university.conductExam(firstStudent, firstPoweredStudent);
 
         System.out.println();
-
+    //--------
         Student secondStudent = new Student(
                 "Георги",
                 StudentType.FITNESS_MANIAC,
@@ -42,7 +43,7 @@ public class Main {
         university.conductExam(secondStudent, secondPoweredStudent);
 
         System.out.println();
-
+    //--------
         Student thirdStudent = new Student(
                 "Петър",
                 StudentType.LUCKY,
@@ -54,7 +55,21 @@ public class Main {
         );
 
         university.conductExam(thirdStudent, thirdPoweredStudent);
+    //--------
+        Student fourthStudent = new Student(
+                "Мария",
+                StudentType.LUCKY,
+                new TeleportationStrategy()
+        );
 
+        ExamParticipant fourthPoweredStudent = new SuperConcentration(
+                new Telepathy(
+                        new FastWriting(fourthStudent)
+                )
+        );
+
+        university.conductExam(fourthStudent, fourthPoweredStudent);
+    //--------
         System.out.println("Един и същ университет ли е?     " + (university == anotherUniversity ? "Да това еедин и същ университет!" : "Не, не е един и същ университет!"));
     }
 }
