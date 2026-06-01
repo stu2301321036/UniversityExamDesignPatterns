@@ -36,7 +36,7 @@ public class Student implements ExamParticipant {
 
     @Override
     public String getDescription() {
-        return name + " - " + getStudentTypeName();
+        return name + " - " + type.getDisplayName();
     }
 
     @Override
