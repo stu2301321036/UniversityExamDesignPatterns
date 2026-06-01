@@ -1,49 +1,30 @@
 package bg.university.exam;
 
-import bg.university.exam.arrival.RunningAndJumpingStrategy;
-import bg.university.exam.arrival.SleepingInBusStrategy;
 import bg.university.exam.arrival.TeleportationStrategy;
+import bg.university.exam.power.FastWriting;
+import bg.university.exam.power.SuperConcentration;
+import bg.university.exam.power.Telepathy;
+import bg.university.exam.student.ExamParticipant;
 import bg.university.exam.student.Student;
 import bg.university.exam.student.StudentType;
-import bg.university.exam.task.Task;
-import bg.university.exam.task.TaskFactory;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("=== Тест на Factory шаблон ===");
+        System.out.println("=== Тест на Decorator шаблон ===");
 
-        Student firstStudent = new Student(
+        Student student = new Student(
                 "Иван",
                 StudentType.WUNDERKIND,
                 new TeleportationStrategy()
         );
 
-        Student secondStudent = new Student(
-                "Георги",
-                StudentType.FITNESS_MANIAC,
-                new RunningAndJumpingStrategy()
+        ExamParticipant poweredStudent = new SuperConcentration(
+                new FastWriting(
+                        new Telepathy(student)
+                )
         );
 
-        Student thirdStudent = new Student(
-                "Петър",
-                StudentType.LUCKY,
-                new SleepingInBusStrategy()
-        );
-
-        showAssignedTask(firstStudent);
-        System.out.println();
-
-        showAssignedTask(secondStudent);
-        System.out.println();
-
-        showAssignedTask(thirdStudent);
-    }
-
-    private static void showAssignedTask(Student student) {
-        Task task = TaskFactory.createTask(student.getType());
-
-        System.out.println("Студент: " + student.getDescription());
-        System.out.println("Получена задача: " + task.getTitle());
-        task.showTask();
+        System.out.println("Участник: " + poweredStudent.getDescription());
+        poweredStudent.solveTask();
     }
 }
