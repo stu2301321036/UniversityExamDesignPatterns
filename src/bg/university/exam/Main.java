@@ -13,6 +13,7 @@ import bg.university.exam.student.StudentType;
 public class Main {
     public static void main(String[] args) {
         University university = University.getInstance();
+        University anotherUniversity = University.getInstance();
 
         Student firstStudent = new Student(
                 "Иван",
@@ -53,5 +54,7 @@ public class Main {
         );
 
         university.conductExam(thirdStudent, thirdPoweredStudent);
+
+        System.out.println("Един и същ университет ли е?     " + (university == anotherUniversity ? "Да това еедин и същ университет!" : "Не, не е един и същ университет!"));
     }
 }
