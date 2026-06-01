@@ -5,10 +5,12 @@ import bg.university.exam.arrival.SleepingInBusStrategy;
 import bg.university.exam.arrival.TeleportationStrategy;
 import bg.university.exam.student.Student;
 import bg.university.exam.student.StudentType;
+import bg.university.exam.task.Task;
+import bg.university.exam.task.TaskFactory;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("=== Тест на Student + Strategy ===");
+        System.out.println("=== Тест на Factory шаблон ===");
 
         Student firstStudent = new Student(
                 "Иван",
@@ -28,17 +30,20 @@ public class Main {
                 new SleepingInBusStrategy()
         );
 
-        firstStudent.arriveAtUniversity();
-        firstStudent.solveTask();
-
+        showAssignedTask(firstStudent);
         System.out.println();
 
-        secondStudent.arriveAtUniversity();
-        secondStudent.solveTask();
-
+        showAssignedTask(secondStudent);
         System.out.println();
 
-        thirdStudent.arriveAtUniversity();
-        thirdStudent.solveTask();
+        showAssignedTask(thirdStudent);
+    }
+
+    private static void showAssignedTask(Student student) {
+        Task task = TaskFactory.createTask(student.getType());
+
+        System.out.println("Студент: " + student.getDescription());
+        System.out.println("Получена задача: " + task.getTitle());
+        task.showTask();
     }
 }
